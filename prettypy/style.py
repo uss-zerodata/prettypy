@@ -1,6 +1,4 @@
-class Color:
-    def __init__(self):
-        self. foreground: dict = {
+FOREGROUND: dict = {
             "black": "30",
             "red": "31",
             "green": "32",
@@ -20,7 +18,7 @@ class Color:
             "bright_white": "97"
         }
 
-        self.background: dict = {
+BACKGROUND: dict = {
             "black": "40",
             "red": "41",
             "green": "42",
@@ -40,7 +38,7 @@ class Color:
             "bright_white": "107"
         }
 
-        self.format: dict = {
+FORMAT: dict = {
             "reset": "0",
             "bold": "1",
             "dim": "2",
@@ -52,36 +50,26 @@ class Color:
             "strikethrough": "9"
         }
 
-    def colorize(self, text: str, _fg: str = None, _bg: str = None, _style: str = None) -> str:
-        """
-        Colorize text with ANSI escape sequences.
-        :param text: Text to colorize
-        :param _fg: Foreground color (optional)
-        :param _bg: Background color (optional)
-        :param _style: Style to apply (optional)
-        :return: Formatted text
 
-        Example:
-        styles._colorize("Hello World", "red", "blue", "bold")
-        """
-        if _fg is None:
-            _fg = "reset"
-        if _bg is None:
-            _bg = "reset"
-        if _style is None:
-            _style = "reset"
+def stylize(text: str, fg: str = "reset", bg: str = "reset", st: str = "reset") -> str:
+    """
+    Style text with ANSI escape sequences.
+    :param text: Text to style
+    :param fg: Foreground color
+    :param bg: Background color
+    :param st: Style to apply
+    :return: Formatted text
 
-        if self.foreground[_fg]:
-            _fg = self.foreground[_fg]
-        else:
-            _fg = self.foreground["reset"]
-        if self.background[_bg]:
-            _bg = self.background[_bg]
-        else:
-            _bg = self.background["reset"]
-        if self.format[_style]:
-            _style = self.format[_style]
-        else:
-            _style = self.format["reset"]
+    Example:
+    stylize("Hello World", "black", "yellow", "underline")
+    stylize("Hello World", st="italic")
+    """
+    _fg = FOREGROUND[fg]
+    _bg = BACKGROUND[bg]
+    _style = FORMAT[st]
+    return f"\033[{_style};{_fg};{_bg}m{text}\033[0m"
 
-        return f"\033[{_style};{_fg};{_bg}m{text}\033[0m"
+
+if __name__ == '__main__':
+    print(stylize("Hello World", "black", "yellow", "underline"))
+    print(stylize("Hello World", st="italic"))
