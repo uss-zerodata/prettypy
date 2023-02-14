@@ -62,8 +62,8 @@ Main class for PrettyPy.
   - negative(text, prefix, suffix)
   - neutral(text, prefix, suffix)
   - highlight(text, prefix, suffix)
-  - emphasize(text, prefix, suffix)
-  - bold(text, prefix, suffix)
+  - emphasis(text, prefix, suffix)
+  - strong(text, prefix, suffix)
 - progress
   - __init__(text, prefix, suffix, total, status)
   - start(percent, status)
