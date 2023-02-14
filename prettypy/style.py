@@ -51,23 +51,46 @@ FORMAT: dict = {
         }
 
 
-def stylize(text: str, fg: str = "reset", bg: str = "reset", st: str = "reset") -> str:
+def list_fg() -> list:
+    """
+    List all foreground color names.
+    :return: List of foreground colors
+    """
+    return list(FOREGROUND.keys())
+
+
+def list_bg() -> list:
+    """
+    List all background color names.
+    :return: List of background colors
+    """
+    return list(BACKGROUND.keys())
+
+
+def list_format() -> list:
+    """
+    List all text format names.
+    :return: List of formats
+    """
+    return list(FORMAT.keys())
+
+
+def stylize(text: str, fg: str = "reset", bg: str = "reset", fm: str = "reset") -> str:
     """
     Style text with ANSI escape sequences.
     :param text: Text to style
     :param fg: Foreground color
     :param bg: Background color
-    :param st: Style to apply
+    :param fm: Text format
     :return: Formatted text
 
     Example:
-    stylize("Hello World", "black", "yellow", "underline")
-    stylize("Hello World", st="italic")
+        stylize("Hello World", "black", "yellow", "underline")
     """
     _fg = FOREGROUND[fg]
     _bg = BACKGROUND[bg]
-    _style = FORMAT[st]
-    return f"\033[{_style};{_fg};{_bg}m{text}\033[0m"
+    _fm = FORMAT[fm]
+    return f"\033[{_fm};{_fg};{_bg}m{text}\033[0m"
 
 
 if __name__ == '__main__':
