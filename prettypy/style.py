@@ -69,7 +69,7 @@ def list_bg() -> list:
 
 def list_format() -> list:
     """
-    List all text format names.
+    List all layout_text format names.
     :return: List of formats
     """
     return list(FORMAT.keys())
@@ -77,12 +77,12 @@ def list_format() -> list:
 
 def stylize(text: str, fg: str = "reset", bg: str = "reset", fm: str = "reset") -> str:
     """
-    Style text with ANSI escape sequences.
+    Style layout_text with ANSI escape sequences.
     :param text: Text to style
     :param fg: Foreground color
     :param bg: Background color
     :param fm: Text format
-    :return: Formatted text
+    :return: Formatted layout_text
 
     Example:
         stylize("Hello World", "black", "yellow", "underline")
