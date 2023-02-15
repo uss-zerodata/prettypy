@@ -95,8 +95,7 @@ class Composer:
                               _layout["suffix"][2], _layout["suffix"][3])
             self._layouts[_name] = layout
 
-    def add_simple_layout(self, name: str, text: str,
-                          color: str = "reset") -> None:
+    def add(self, name: str, text: str, color: str = "reset") -> None:
         """
         Add a simple layout to the composer.
         :param name: Name of the layout
@@ -130,7 +129,6 @@ class Composer:
         """
         List all layouts.
         """
-
         return list(self._layouts.keys())
 
     def compose(self, layout: str, msg: str = None) -> str:
@@ -166,7 +164,7 @@ class Composer:
 
 if __name__ == '__main__':
     composer = Composer()
-    composer.add_simple_layout("test", "[Test]", "red")
+    composer.add("test", "[Test]", "red")
     print(composer.compose("error", "This is an error message"))
     composer.adjust_padding()
     print(composer.compose("success", "This is a success message"))

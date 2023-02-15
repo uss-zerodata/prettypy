@@ -38,18 +38,18 @@ Update requirements.txt
 python3 -m  pipreqs.pipreqs .
 ~~~
 
+Install requirements
+~~~sh
+pip install -e .
+~~~
+
 # Clean
 
 Clean build files
 ~~~sh
-rm -rf build dist *.egg-info
-~~~
-
-# Version
-
-Update version
-~~~sh
-python -m bump2version patch
+rm -r build 
+rm -r dist 
+rm -r *.egg-info
 ~~~
 
 # Build
