@@ -67,7 +67,7 @@ def list_bg() -> list:
     return list(BACKGROUND.keys())
 
 
-def list_format() -> list:
+def list_fm() -> list:
     """
     List all test format names.
     :return: List of formats
@@ -88,9 +88,9 @@ def stylize(text: str, fg: str = "reset", bg: str = "reset",
     Example:
         stylize("Hello World", "black", "yellow", "underline")
     """
-    _fg = FOREGROUND[fg]
-    _bg = BACKGROUND[bg]
-    _fm = FORMAT[fm]
+    _fg: str = FOREGROUND[fg]
+    _bg: str = BACKGROUND[bg]
+    _fm: str = FORMAT[fm]
     return f"\033[{_fm};{_fg};{_bg}m{text}\033[0m"
 
 
