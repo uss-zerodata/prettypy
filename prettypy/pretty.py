@@ -2,11 +2,12 @@ from prettypy.composer import Composer
 
 
 class Pretty:
-    def __init__(self) -> None:
+    def __init__(self, no_color: bool = False) -> None:
         """
         Initialize Pretty.
         """
-        self._composer = Composer()
+        self._no_color: bool = no_color
+        self._composer: Composer = Composer()
 
     def __call__(self, msg: str) -> str:
         """
@@ -22,7 +23,7 @@ class Pretty:
         :param msg: Message to display
         :return: Formatted text
         """
-        pretty = self._composer.compose("info", msg)
+        pretty: str = self._composer.compose("info", msg)
         print(pretty)
         return pretty
 
@@ -32,7 +33,7 @@ class Pretty:
         :param msg: Message to display
         :return: Formatted text
         """
-        pretty = self._composer.compose("success", msg)
+        pretty: str = self._composer.compose("success", msg)
         print(pretty)
         return pretty
 
@@ -42,7 +43,7 @@ class Pretty:
         :param msg: Message to display
         :return: Formatted text
         """
-        pretty = self._composer.compose("warning", msg)
+        pretty: str = self._composer.compose("warning", msg)
         print(pretty)
         return pretty
 
@@ -52,7 +53,7 @@ class Pretty:
         :param msg: Message to display
         :return: Formatted text
         """
-        pretty = self._composer.compose("error", msg)
+        pretty: str = self._composer.compose("error", msg)
         print(pretty)
         return pretty
 
@@ -62,7 +63,7 @@ class Pretty:
         :param msg: Message to display
         :return: Formatted text
         """
-        pretty = self._composer.compose("debug", msg)
+        pretty: str = self._composer.compose("debug", msg)
         print(pretty)
         return pretty
 
@@ -72,7 +73,7 @@ class Pretty:
         :param msg: Message to display
         :return: Formatted text
         """
-        pretty = self._composer.compose("note", msg)
+        pretty: str = self._composer.compose("note", msg)
         print(pretty)
         return pretty
 
@@ -82,7 +83,7 @@ class Pretty:
         :param msg: Message to display
         :return: Formatted text
         """
-        pretty = self._composer.compose("log", msg)
+        pretty: str = self._composer.compose("log", msg)
         print(pretty)
         return pretty
 
@@ -92,7 +93,7 @@ class Pretty:
         :param msg: Message to display
         :return: Formatted text
         """
-        pretty = self._composer.compose("question", msg)
+        pretty: str = self._composer.compose("question", msg)
         print(pretty)
         return pretty
 
@@ -102,7 +103,7 @@ class Pretty:
         :param msg: Message to display
         :return: Formatted text
         """
-        pretty = self._composer.compose("positive", msg)
+        pretty: str = self._composer.compose("positive", msg)
         print(pretty)
         return pretty
 
@@ -112,7 +113,7 @@ class Pretty:
         :param msg: Message to display
         :return: Formatted text
         """
-        pretty = self._composer.compose("negative", msg)
+        pretty: str = self._composer.compose("negative", msg)
         print(pretty)
         return pretty
 
@@ -122,7 +123,7 @@ class Pretty:
         :param msg: Message to display
         :return: Formatted text
         """
-        pretty = self._composer.compose("neutral", msg)
+        pretty: str = self._composer.compose("neutral", msg)
         print(pretty)
         return pretty
 
@@ -135,15 +136,5 @@ class Pretty:
 
 
 if __name__ == '__main__':
-    pretty = Pretty()
-    pretty.info("Info message")
-    pretty.success("Success message")
-    pretty.warning("Warning message")
-    pretty.error("Error message")
-    pretty.debug("Debug message")
-    pretty.note("Note message")
-    pretty.log("Log message")
-    pretty.question("Question message")
-    pretty.positive("Positive message")
-    pretty.negative("Negative message")
-    pretty.neutral("Neutral message")
+    p = Pretty()
+    p.success("Success message")
