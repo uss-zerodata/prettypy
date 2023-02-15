@@ -142,6 +142,14 @@ class Composer:
         layout = self.get_layout(layout)
         return layout.render(msg)
 
+    def print(self, layout: str, msg: str = None) -> None:
+        """
+        Compose a text with a layout and print it.
+        :param layout: Name of the layout to use
+        :param msg: Text to compose
+        """
+        print(self.compose(layout, msg))
+
     def adjust_padding(self, padding: int = 0) -> None:
         """
         Adjust the padding of all layouts.
