@@ -92,8 +92,3 @@ def stylize(text: str, fg: str = "reset", bg: str = "reset",
     _bg: str = BACKGROUND[bg]
     _fm: str = FORMAT[fm]
     return f"\033[{_fm};{_fg};{_bg}m{text}\033[0m"
-
-
-if __name__ == '__main__':
-    print(stylize("Hello World", "black", "yellow", "underline"))
-    print(stylize("Hello World", fm="italic"))
