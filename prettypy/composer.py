@@ -131,7 +131,7 @@ class Composer:
         """
         return self._layouts.get(name)
 
-    def list(self) -> list:
+    def list_modes(self) -> list:
         """
         List all layouts.
         """

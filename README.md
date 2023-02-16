@@ -4,14 +4,13 @@
 [![PyPI version](https://badge.fury.io/py/prettypy.svg)](https://badge.fury.io/py/prettypy)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/prettypy)
 
-PrettyPy is a Python library. It provides a simple API for printing messages with colours and styles.
-Colour output is a great way to make your CLI applications more user-friendly and readable.
-Status messages, error messages and other types of messages can be printed with coloured indicators to make them stand out from the rest.
+PrettyPy is a Python library that simplifies printing colored and styled messages in CLI applications. With PrettyPy, you can easily print status updates, error messages, and other types of messages with colored indicators that help them stand out.
 
-To create custom layouts and print messages with them, PrettyPy provides a simple API.
-To quickly improve the readability of your CLI applications, it also provides a set of default layouts.
+The library offers a straightforward API for creating custom layouts, as well as a range of pre-built layouts that you can use to enhance the readability of your CLI applications.
 
-ANSI escape codes are used for colouring. These are supported by most devices.
+PrettyPy uses ANSI escape codes to provide its coloring functionality, which is supported by most terminals. If your terminal does not support ANSI escape codes, you can set the no-color flag to disable the coloring functionality.
+
+By using PrettyPy, you can create user-friendly CLI applications that are easier to read and more engaging.
 
 - [GitHub](https://github.com/uss-zerodata/prettypy)
 - [PyPi](https://pypi.org/project/prettypy)
@@ -56,6 +55,7 @@ c.add('simple', '[S]', 'blue')
 # Print a message with the simple layout
 c.compose('simple', 'This is a simple message')
 ~~~
+
 > <span style="color: red">[✗]</span> Something went wrong <br>
 > <span style="color: green">[✓]</span> Everything is fine <br>
 > <span style="color: blue">[S]</span> This is a simple messages
