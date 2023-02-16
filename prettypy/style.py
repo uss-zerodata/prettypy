@@ -75,8 +75,7 @@ def list_fm() -> list:
     return list(FORMAT.keys())
 
 
-def stylize(text: str, fg: str = "reset", bg: str = "reset",
-            fm: str = "reset", _no_color: bool = False) -> str:
+def stylize(text: str, fg: str = "reset", bg: str = "reset", fm: str = "reset", _no_color: bool = False) -> str:
     """
     Style test with ANSI escape sequences.
     :param text: Text to style

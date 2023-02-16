@@ -13,8 +13,7 @@ class Layout:
         self.suffix: list = ["", "reset", "reset", "reset"]
         self.min_length: int = 0
 
-    def __call__(self, text: str, fg: str = "reset", bg: str = "reset",
-                 fm: str = "reset", msg: str = None) -> str:
+    def __call__(self, text: str, fg: str = "reset", bg: str = "reset", fm: str = "reset", msg: str = None) -> str:
         """
         Quick style test.
         This is a shortcut for set_text, render.
@@ -43,8 +42,7 @@ class Layout:
         """
         return len(self.prefix[0]) + len(self.test[0]) + len(self.suffix[0])
 
-    def set_prefix(self, text: str, fg: str = "reset", bg: str = "reset",
-                   fm: str = "reset") -> None:
+    def set_prefix(self, text: str, fg: str = "reset", bg: str = "reset", fm: str = "reset") -> None:
         """
         Set prefix for test.
         :param text: Text to style
@@ -57,8 +55,7 @@ class Layout:
         self.prefix[2]: str = bg
         self.prefix[3]: str = fm
 
-    def set_text(self, text: str, fg: str = "reset", bg: str = "reset",
-                 fm: str = "reset") -> None:
+    def set_text(self, text: str, fg: str = "reset", bg: str = "reset", fm: str = "reset") -> None:
         """
         Set test to style.
         :param text: Text to style
@@ -71,8 +68,7 @@ class Layout:
         self.test[2]: str = bg
         self.test[3]: str = fm
 
-    def set_suffix(self, text: str, fg: str = "reset", bg: str = "reset",
-                   fm: str = "reset") -> None:
+    def set_suffix(self, text: str, fg: str = "reset", bg: str = "reset", fm: str = "reset") -> None:
         """
         Set suffix for test.
         :param text: Text to style
@@ -98,12 +94,9 @@ class Layout:
         Render styled test.
         :return: Styled test
         """
-        prefix: str = style.stylize(self.prefix[0], self.prefix[1],
-                                    self.prefix[2], self.prefix[3], self._no_color)
-        text: str = style.stylize(self.test[0], self.test[1],
-                                  self.test[2], self.test[3], self._no_color)
-        suffix: str = style.stylize(self.suffix[0], self.suffix[1],
-                                    self.suffix[2], self.suffix[3], self._no_color)
+        prefix: str = style.stylize(self.prefix[0], self.prefix[1], self.prefix[2], self.prefix[3], self._no_color)
+        text: str = style.stylize(self.test[0], self.test[1], self.test[2], self.test[3], self._no_color)
+        suffix: str = style.stylize(self.suffix[0], self.suffix[1], self.suffix[2], self.suffix[3], self._no_color)
         render: str = f"{prefix}{text}{suffix}"
 
         if self.min_length > 0:
