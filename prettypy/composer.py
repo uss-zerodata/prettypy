@@ -26,7 +26,7 @@ DEFAULT_LAYOUTS: dict = {
         "text": ["D", "magenta", "reset", "reset"],
         "suffix": ["]", "magenta", "reset", "reset"],
     },
-    "note": {
+    "notice": {
         "prefix": ["[", "cyan", "reset", "reset"],
         "text": ["!", "cyan", "reset", "reset"],
         "suffix": ["]", "cyan", "reset", "reset"],
@@ -68,13 +68,6 @@ class Composer:
         self._layouts: dict = {}
         self.add_layouts(DEFAULT_LAYOUTS)
 
-    def __delattr__(self, item):
-        """
-        Remove a layout from the composer.
-        :param item: Name of the layout to remove
-        """
-        self._layouts.pop(item)
-
     def __iter__(self):
         """
         Iterate over layouts.
@@ -82,22 +75,28 @@ class Composer:
         for layout in self._layouts.items():
             yield layout[1]
 
-    def add(self, name: str, text: str, fg_color: str = "reset", bg_color: str = "reset", style: str = "reset") -> None:
+    def __list__(self):
+        """
+        List layouts.
+        """
+        return list(self._layouts.values())
+
+    def add(self, name: str, text: str, fg_color: str = "reset", bg_color: str = "reset", text_format: str = "reset") -> None:
         """
         Add a simple layout to the composer.
         :param name: Name of the layout
         :param text: Text to use
         :param fg_color: Color to use
         :param bg_color: Background color to use
-        :param style: Style to use
+        :param text_format: Style to use
 
         Example:
-            composer.add_simple_layout("test", "[Test]", "red")
+            composer.add_simple_layout("text", "[Test]", "red")
         """
         layout: Layout = Layout(name, no_color=self._no_color)
-        layout.set_prefix("", "reset", "reset", "reset")
-        layout.set_text(text, fg_color, bg_color, style)
-        layout.set_suffix("", "reset", "reset", "reset")
+        layout.set_prefix()
+        layout.set_text(text, fg_color, bg_color, text_format)
+        layout.set_suffix()
         self._layouts[name] = layout
 
     def add_layouts(self, layouts: dict) -> None:
@@ -106,7 +105,7 @@ class Composer:
         :param layouts: Layouts to add
 
         Note:
-        Layouts must be in the following format:
+        Layouts must be in the following text_format:
             ```json
         {
             "strong": {
@@ -136,6 +135,13 @@ class Composer:
         List all layouts.
         """
         return list(self._layouts.keys())
+
+    def remove(self, item):
+        """
+        Remove a layout from the composer.
+        :param item: Name of the layout to remove
+        """
+        self._layouts.pop(item)
 
     def compose(self, layout: str, msg: str = None) -> str:
         """
@@ -167,11 +173,3 @@ class Composer:
         for _layout in self._layouts.values():
             _layout.set_padding(longest)
 
-
-if __name__ == '__main__':
-    composer: Composer = Composer()
-    composer.add("test", "[Test]", "red")
-    print(composer.compose("error", "This is an error message"))
-    composer.set_padding()
-    print(composer.compose("success", "This is a success message"))
-    print(composer.compose("test", "This is a test message"))

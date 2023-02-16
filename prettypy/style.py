@@ -69,7 +69,7 @@ def list_bg() -> list:
 
 def list_fm() -> list:
     """
-    List all test format names.
+    List all text text_format names.
     :return: List of formats
     """
     return list(FORMAT.keys())
@@ -77,20 +77,40 @@ def list_fm() -> list:
 
 def stylize(text: str, fg: str = "reset", bg: str = "reset", fm: str = "reset", _no_color: bool = False) -> str:
     """
-    Style test with ANSI escape sequences.
-    :param text: Text to style
+    Style text with ANSI escape sequences.
+    :param text: Text to text_format
     :param fg: Foreground fg_color
     :param bg: Background fg_color
-    :param fm: Text format
+    :param fm: Text text_format
     :param _no_color: Disable color
-    :return: Formatted test
+    :return: Formatted text
 
     Example:
         stylize("Hello World", "black", "yellow", "underline")
     """
+    if fg == "reset" and bg == "reset" and fm == "reset":
+        return text
     if _no_color:
         return text
     _fg: str = FOREGROUND[fg]
     _bg: str = BACKGROUND[bg]
     _fm: str = FORMAT[fm]
-    return f"\033[{_fm};{_fg};{_bg}m{text}\033[0m"
+
+    separate: bool = False
+    ansi_code: str = f"\033["
+
+    if fg != "reset":
+        ansi_code += f"{_fg}"
+        separate = True
+    if bg != "reset":
+        if separate:
+            ansi_code += ";"
+            separate = False
+        ansi_code += f"{_bg}"
+        separate = True
+    if fm != "reset":
+        if separate:
+            ansi_code += ";"
+        ansi_code += f"{_fm}"
+
+    return f"{ansi_code}m{text}\033[0m"

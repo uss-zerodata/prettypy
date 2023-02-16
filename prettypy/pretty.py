@@ -66,13 +66,13 @@ class Pretty:
         print(pretty)
         return pretty
 
-    def note(self, msg: str) -> str:
+    def notice(self, msg: str) -> str:
         """
         Display note message.
         :param msg: Message to display
         :return: Formatted text
         """
-        pretty: str = self._composer.compose("note", msg)
+        pretty: str = self._composer.compose("notice", msg)
         print(pretty)
         return pretty
 
@@ -132,8 +132,3 @@ class Pretty:
         :return: Composer
         """
         return self._composer
-
-
-if __name__ == '__main__':
-    p = Pretty(no_color=False)
-    p.success("Success message")
