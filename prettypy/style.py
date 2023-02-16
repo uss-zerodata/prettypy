@@ -53,7 +53,7 @@ FORMAT: dict = {
 
 def list_fg() -> list:
     """
-    List all foreground color names.
+    List all foreground fg_color names.
     :return: List of foreground colors
     """
     return list(FOREGROUND.keys())
@@ -61,7 +61,7 @@ def list_fg() -> list:
 
 def list_bg() -> list:
     """
-    List all background color names.
+    List all background fg_color names.
     :return: List of background colors
     """
     return list(BACKGROUND.keys())
@@ -76,18 +76,21 @@ def list_fm() -> list:
 
 
 def stylize(text: str, fg: str = "reset", bg: str = "reset",
-            fm: str = "reset") -> str:
+            fm: str = "reset", _no_color: bool = False) -> str:
     """
     Style test with ANSI escape sequences.
     :param text: Text to style
-    :param fg: Foreground color
-    :param bg: Background color
+    :param fg: Foreground fg_color
+    :param bg: Background fg_color
     :param fm: Text format
+    :param _no_color: Disable color
     :return: Formatted test
 
     Example:
         stylize("Hello World", "black", "yellow", "underline")
     """
+    if _no_color:
+        return text
     _fg: str = FOREGROUND[fg]
     _bg: str = BACKGROUND[bg]
     _fm: str = FORMAT[fm]
