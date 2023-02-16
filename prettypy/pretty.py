@@ -7,9 +7,8 @@ class Pretty(PrettyTemplate):
         """
         Initialize Pretty.
         """
-        self.__all__: list = []
         self._composer: Composer = Composer(no_color)
-        self._update()
+        self.update()
 
     def __call__(self, msg: str = "") -> str:
         """
@@ -25,6 +24,12 @@ class Pretty(PrettyTemplate):
         """
         for layout in self._composer:
             yield layout
+
+    def __getattr__(self, item):
+        """
+        Get attribute.
+        """
+        pass
 
     def get_composer(self) -> Composer:
         """
@@ -48,13 +53,12 @@ class Pretty(PrettyTemplate):
             return pretty
         return _method
 
-    def _update(self) -> None:
+    def update(self) -> None:
         """
-        Update the list of layouts.
+        Update Pretty.
         """
         for layout in self._composer:
             setattr(self, layout.name, self._make_method(layout.name))
-            self.__all__.append(layout.name)
 
     def add(self, name: str, text: str, fg_color: str = "reset", bg_color: str = "reset",
             text_format: str = "reset") -> None:
@@ -67,7 +71,7 @@ class Pretty(PrettyTemplate):
         :param text_format: Text format
         """
         self._composer.add(name, text, fg_color, bg_color, text_format)
-        self._update()
+        self.update()
 
     def remove(self, name: str) -> None:
         """
@@ -75,4 +79,4 @@ class Pretty(PrettyTemplate):
         :param name: Name of the layout
         """
         self._composer.remove(name)
-        self._update()
+        self.update()

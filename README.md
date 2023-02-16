@@ -93,3 +93,4 @@ With the PrettyPy package, you can make your CLI applications more user-friendly
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/uss-zerodata/prettypy)
 
 ![GitHub contributors](https://img.shields.io/github/contributors/uss-zerodata/prettypy)
+ 
