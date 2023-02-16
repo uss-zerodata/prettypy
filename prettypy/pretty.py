@@ -8,7 +8,7 @@ class Pretty:
         """
         self._composer: Composer = Composer(no_color)
 
-    def __call__(self, msg: str) -> str:
+    def __call__(self, msg: str = "") -> str:
         """
         Quick display message.
         :param msg: Message to display
@@ -16,7 +16,7 @@ class Pretty:
         """
         return self.neutral(msg)
 
-    def info(self, msg: str) -> str:
+    def info(self, msg: str = "") -> str:
         """
         Display info message.
         :param msg: Message to display
@@ -26,7 +26,7 @@ class Pretty:
         print(pretty)
         return pretty
 
-    def success(self, msg: str) -> str:
+    def success(self, msg: str = "") -> str:
         """
         Display success message.
         :param msg: Message to display
@@ -36,7 +36,7 @@ class Pretty:
         print(pretty)
         return pretty
 
-    def warning(self, msg: str) -> str:
+    def warning(self, msg: str = "") -> str:
         """
         Display warning message.
         :param msg: Message to display
@@ -46,7 +46,7 @@ class Pretty:
         print(pretty)
         return pretty
 
-    def error(self, msg: str) -> str:
+    def error(self, msg: str = "") -> str:
         """
         Display error message.
         :param msg: Message to display
@@ -56,7 +56,7 @@ class Pretty:
         print(pretty)
         return pretty
 
-    def debug(self, msg: str) -> str:
+    def debug(self, msg: str = "") -> str:
         """
         Display debug message.
         :param msg: Message to display
@@ -66,7 +66,7 @@ class Pretty:
         print(pretty)
         return pretty
 
-    def notice(self, msg: str) -> str:
+    def notice(self, msg: str = "") -> str:
         """
         Display note message.
         :param msg: Message to display
@@ -76,7 +76,7 @@ class Pretty:
         print(pretty)
         return pretty
 
-    def log(self, msg: str) -> str:
+    def log(self, msg: str = "") -> str:
         """
         Display log message.
         :param msg: Message to display
@@ -86,7 +86,7 @@ class Pretty:
         print(pretty)
         return pretty
 
-    def question(self, msg: str) -> str:
+    def question(self, msg: str = "") -> str:
         """
         Display question message.
         :param msg: Message to display
@@ -96,7 +96,7 @@ class Pretty:
         print(pretty)
         return pretty
 
-    def positive(self, msg: str) -> str:
+    def positive(self, msg: str = "") -> str:
         """
         Display positive message.
         :param msg: Message to display
@@ -106,7 +106,7 @@ class Pretty:
         print(pretty)
         return pretty
 
-    def negative(self, msg: str) -> str:
+    def negative(self, msg: str = "") -> str:
         """
         Display negative message.
         :param msg: Message to display
@@ -116,7 +116,7 @@ class Pretty:
         print(pretty)
         return pretty
 
-    def neutral(self, msg: str) -> str:
+    def neutral(self, msg: str = "") -> str:
         """
         Display neutral message.
         :param msg: Message to display

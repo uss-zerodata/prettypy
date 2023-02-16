@@ -53,7 +53,7 @@ DEFAULT_LAYOUTS: dict = {
     },
     "neutral": {
         "prefix": ["[", "reset", "reset", "reset"],
-        "text": ["~", "reset", "reset", "reset"],
+        "text": [" ", "reset", "reset", "reset"],
         "suffix": ["]", "reset", "reset", "reset"],
     },
 }
