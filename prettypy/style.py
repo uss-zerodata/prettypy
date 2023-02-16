@@ -97,7 +97,7 @@ def stylize(text: str, fg: str = "reset", bg: str = "reset", fm: str = "reset", 
     _fm: str = FORMAT[fm]
 
     separate: bool = False
-    ansi_code: str = f"\033["
+    ansi_code: str = "\033["
 
     if fg != "reset":
         ansi_code += f"{_fg}"

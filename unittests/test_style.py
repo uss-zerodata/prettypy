@@ -1,4 +1,5 @@
 import unittest
+
 from prettypy import style
 
 FOREGROUND: dict = {

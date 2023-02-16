@@ -81,7 +81,8 @@ class Composer:
         """
         return list(self._layouts.values())
 
-    def add(self, name: str, text: str, fg_color: str = "reset", bg_color: str = "reset", text_format: str = "reset") -> None:
+    def add(self, name: str, text: str, fg_color: str = "reset", bg_color: str = "reset",
+            text_format: str = "reset") -> None:
         """
         Add a simple layout to the composer.
         :param name: Name of the layout
@@ -172,4 +173,3 @@ class Composer:
                 longest = len(_layout)
         for _layout in self._layouts.values():
             _layout.set_padding(longest)
-

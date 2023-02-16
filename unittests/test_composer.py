@@ -144,7 +144,7 @@ class TestComposer(unittest.TestCase):
                          "[X] test", "Compose is not correct")
         composer = Composer()
         self.assertEqual(composer.compose("error", "test"),
-                            "\x1b[31m[\x1b[0m\x1b[31mX\x1b[0m\x1b[31m]\x1b[0m test", "Compose is not correct")
+                         "\x1b[31m[\x1b[0m\x1b[31mX\x1b[0m\x1b[31m]\x1b[0m test", "Compose is not correct")
 
     def test_print(self):
         composer = Composer(no_color=True)
