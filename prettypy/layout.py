@@ -2,25 +2,25 @@ from prettypy import style
 
 
 class Layout:
-    def __init__(self, name: str = "default") -> None:
+    def __init__(self, name: str = "default", no_color: bool = False) -> None:
         """
         Initialize layout.
         """
+        self._no_color: bool = no_color
         self.name: str = name
         self.prefix: list = ["", "reset", "reset", "reset"]
-        self.test: list = ["", "reset", "reset", "reset"]
+        self.text: list = ["", "reset", "reset", "reset"]
         self.suffix: list = ["", "reset", "reset", "reset"]
-        self._min_length: int = 0
+        self.min_length: int = 0
 
-    def __call__(self, text: str, fg: str = "reset", bg: str = "reset",
-                 fm: str = "reset", msg: str = None) -> str:
+    def __call__(self, text: str, fg: str = "reset", bg: str = "reset", fm: str = "reset", msg: str = None) -> str:
         """
-        Quick style test.
+        Quick text_format text.
         This is a shortcut for set_text, render.
-        :param text: Text to style
-        :param fg: Foreground color
-        :param bg: Background color
-        :param fm: Text format
+        :param text: Text to text_format
+        :param fg: Foreground fg_color
+        :param bg: Background fg_color
+        :param fm: Text text_format
         :return: Formatted text
 
         Example:
@@ -35,47 +35,51 @@ class Layout:
         """
         return self.name
 
-    def set_prefix(self, text: str, fg: str = "reset", bg: str = "reset",
-                   fm: str = "reset") -> None:
+    def __len__(self):
         """
-        Set prefix for test.
-        :param text: Text to style
-        :param fg: Foreground color
-        :param bg: Background color
-        :param fm: Text format
+        Get effective length of the finished render.
+        :return: Effective length
         """
-        self.prefix[0] = text
-        self.prefix[1] = fg
-        self.prefix[2] = bg
-        self.prefix[3] = fm
+        return len(self.prefix[0]) + len(self.text[0]) + len(self.suffix[0])
 
-    def set_text(self, text: str, fg: str = "reset", bg: str = "reset",
-                 fm: str = "reset") -> None:
+    def set_prefix(self, text: str = "", fg: str = "reset", bg: str = "reset", fm: str = "reset") -> None:
         """
-        Set test to style.
-        :param text: Text to style
-        :param fg: Foreground color
-        :param bg: Background color
-        :param fm: Text format
+        Set prefix for text.
+        :param text: Text to text_format
+        :param fg: Foreground fg_color
+        :param bg: Background fg_color
+        :param fm: Text text_format
         """
-        self.test[0] = text
-        self.test[1] = fg
-        self.test[2] = bg
-        self.test[3] = fm
+        self.prefix[0]: str = text
+        self.prefix[1]: str = fg
+        self.prefix[2]: str = bg
+        self.prefix[3]: str = fm
 
-    def set_suffix(self, text: str, fg: str = "reset", bg: str = "reset",
-                   fm: str = "reset") -> None:
+    def set_text(self, text: str = "", fg: str = "reset", bg: str = "reset", fm: str = "reset") -> None:
         """
-        Set suffix for test.
-        :param text: Text to style
-        :param fg: Foreground color
-        :param bg: Background color
-        :param fm: Text format
+        Set text to text_format.
+        :param text: Text to text_format
+        :param fg: Foreground fg_color
+        :param bg: Background fg_color
+        :param fm: Text text_format
         """
-        self.suffix[0] = text
-        self.suffix[1] = fg
-        self.suffix[2] = bg
-        self.suffix[3] = fm
+        self.text[0]: str = text
+        self.text[1]: str = fg
+        self.text[2]: str = bg
+        self.text[3]: str = fm
+
+    def set_suffix(self, text: str = "", fg: str = "reset", bg: str = "reset", fm: str = "reset") -> None:
+        """
+        Set suffix for text.
+        :param text: Text to text_format
+        :param fg: Foreground fg_color
+        :param bg: Background fg_color
+        :param fm: Text text_format
+        """
+        self.suffix[0]: str = text
+        self.suffix[1]: str = fg
+        self.suffix[2]: str = bg
+        self.suffix[3]: str = fm
 
     def set_padding(self, length: int) -> None:
         """
@@ -83,42 +87,22 @@ class Layout:
         This is useful for padding.
         :param length: Minimum length
         """
-        self._min_length = length
-
-    def get_effective_length(self) -> int:
-        """
-        Get effective length of the finished render.
-        :return: Effective length
-        """
-        length = len(self.prefix[0]) + len(self.test[0]) + len(self.suffix[0])
-        return length
+        self.min_length: int = length
 
     def render(self, msg: str = None) -> str:
         """
-        Render styled test.
-        :return: Styled test
+        Render styled text.
+        :return: Styled text
         """
-        prefix = style.stylize(self.prefix[0], self.prefix[1], self.prefix[2],
-                               self.prefix[3])
-        text = style.stylize(self.test[0], self.test[1], self.test[2],
-                             self.test[3])
-        suffix = style.stylize(self.suffix[0], self.suffix[1], self.suffix[2],
-                               self.suffix[3])
-        render = f"{prefix}{text}{suffix}"
+        prefix: str = style.stylize(self.prefix[0], self.prefix[1], self.prefix[2], self.prefix[3], self._no_color)
+        text: str = style.stylize(self.text[0], self.text[1], self.text[2], self.text[3], self._no_color)
+        suffix: str = style.stylize(self.suffix[0], self.suffix[1], self.suffix[2], self.suffix[3], self._no_color)
+        render: str = f"{prefix}{text}{suffix}"
 
-        if self._min_length > 0:
-            if self.get_effective_length() < self._min_length:
-                render += " " * (self._min_length
-                                 - self.get_effective_length())
+        if self.min_length > 0:
+            if len(self) < self.min_length:
+                render += " " * (self.min_length - len(self))
 
         if msg is not None:
             render += f" {msg}"
         return render
-
-
-if __name__ == '__main__':
-    layout = Layout("test")
-    layout.set_prefix("[", "yellow")
-    layout.set_text("'-'", "yellow", fm="bold")
-    layout.set_suffix("]", "yellow")
-    print(layout.render("hello world"))

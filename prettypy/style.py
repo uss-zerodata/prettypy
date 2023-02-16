@@ -53,7 +53,7 @@ FORMAT: dict = {
 
 def list_fg() -> list:
     """
-    List all foreground color names.
+    List all foreground fg_color names.
     :return: List of foreground colors
     """
     return list(FOREGROUND.keys())
@@ -61,39 +61,56 @@ def list_fg() -> list:
 
 def list_bg() -> list:
     """
-    List all background color names.
+    List all background fg_color names.
     :return: List of background colors
     """
     return list(BACKGROUND.keys())
 
 
-def list_format() -> list:
+def list_fm() -> list:
     """
-    List all test format names.
+    List all text text_format names.
     :return: List of formats
     """
     return list(FORMAT.keys())
 
 
-def stylize(text: str, fg: str = "reset", bg: str = "reset",
-            fm: str = "reset") -> str:
+def stylize(text: str, fg: str = "reset", bg: str = "reset", fm: str = "reset", _no_color: bool = False) -> str:
     """
-    Style test with ANSI escape sequences.
-    :param text: Text to style
-    :param fg: Foreground color
-    :param bg: Background color
-    :param fm: Text format
-    :return: Formatted test
+    Style text with ANSI escape sequences.
+    :param text: Text to text_format
+    :param fg: Foreground fg_color
+    :param bg: Background fg_color
+    :param fm: Text text_format
+    :param _no_color: Disable color
+    :return: Formatted text
 
     Example:
         stylize("Hello World", "black", "yellow", "underline")
     """
-    _fg = FOREGROUND[fg]
-    _bg = BACKGROUND[bg]
-    _fm = FORMAT[fm]
-    return f"\033[{_fm};{_fg};{_bg}m{text}\033[0m"
+    if fg == "reset" and bg == "reset" and fm == "reset":
+        return text
+    if _no_color:
+        return text
+    _fg: str = FOREGROUND[fg]
+    _bg: str = BACKGROUND[bg]
+    _fm: str = FORMAT[fm]
 
+    separate: bool = False
+    ansi_code: str = "\033["
 
-if __name__ == '__main__':
-    print(stylize("Hello World", "black", "yellow", "underline"))
-    print(stylize("Hello World", fm="italic"))
+    if fg != "reset":
+        ansi_code += f"{_fg}"
+        separate = True
+    if bg != "reset":
+        if separate:
+            ansi_code += ";"
+            separate = False
+        ansi_code += f"{_bg}"
+        separate = True
+    if fm != "reset":
+        if separate:
+            ansi_code += ";"
+        ansi_code += f"{_fm}"
+
+    return f"{ansi_code}m{text}\033[0m"
