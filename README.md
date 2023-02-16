@@ -20,7 +20,7 @@ ANSI escape codes are used for colouring. These are supported by most devices.
 
 - [x] Print messages with colors and styles
 - [x] Create custom layouts
-- [ ] No color mode
+- [x] No color mode
 - [ ] Table output
 - [ ] Updating messages
 - [ ] Progress bars

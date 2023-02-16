@@ -82,8 +82,7 @@ class Composer:
         for layout in self._layouts.items():
             yield layout[1]
 
-    def add(self, name: str, text: str, fg_color: str = "reset", bg_color: str = "reset",
-            style: str = "reset") -> None:
+    def add(self, name: str, text: str, fg_color: str = "reset", bg_color: str = "reset", style: str = "reset") -> None:
         """
         Add a simple layout to the composer.
         :param name: Name of the layout
@@ -103,8 +102,7 @@ class Composer:
 
     def add_layouts(self, layouts: dict) -> None:
         """
-        Add multiple Layouts to the composer,
-        by passing a dictionary with styling instructions.
+        Add multiple Layouts to the composer, by passing a dictionary with styling instructions.
         :param layouts: Layouts to add
 
         Note:
@@ -121,12 +119,9 @@ class Composer:
         """
         for _name, _layout in layouts.items():
             layout: Layout = Layout(_name, no_color=self._no_color)
-            layout.set_prefix(_layout["prefix"][0], _layout["prefix"][1],
-                              _layout["prefix"][2], _layout["prefix"][3])
-            layout.set_text(_layout["text"][0], _layout["text"][1],
-                            _layout["text"][2], _layout["text"][3])
-            layout.set_suffix(_layout["suffix"][0], _layout["suffix"][1],
-                              _layout["suffix"][2], _layout["suffix"][3])
+            layout.set_prefix(_layout["prefix"][0], _layout["prefix"][1], _layout["prefix"][2], _layout["prefix"][3])
+            layout.set_text(_layout["text"][0], _layout["text"][1], _layout["text"][2], _layout["text"][3])
+            layout.set_suffix(_layout["suffix"][0], _layout["suffix"][1], _layout["suffix"][2], _layout["suffix"][3])
             self._layouts[_name] = layout
 
     def get(self, name: str) -> Layout:
