@@ -176,5 +176,3 @@ if __name__ == '__main__':
     composer.set_padding()
     print(composer.compose("success", "This is a success message"))
     print(composer.compose("test", "This is a test message"))
-    for _layout in composer:
-        print(_layout)
