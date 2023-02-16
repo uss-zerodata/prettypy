@@ -7,19 +7,19 @@ class TestStyle(unittest.TestCase):
         fg_colors: int = 17
         self.assertGreaterEqual(len(style.list_fg()), fg_colors, "Default foreground colors incomplete.")
         sample: list = list(style.FOREGROUND.keys())
-        self.assertEqual(style.list_fg(), sample, "Foreground color list does not match default dictionary.")
+        self.assertEqual(style.list_fg(), sample, "Foreground fg_color list does not match default dictionary.")
 
     def test_list_bg(self):
         bg_colors: int = 17
         self.assertGreaterEqual(len(style.list_bg()), bg_colors, "Default background colors incomplete.")
         sample: list = list(style.BACKGROUND.keys())
-        self.assertEqual(style.list_bg(), sample, "Background color list does not match default dictionary.")
+        self.assertEqual(style.list_bg(), sample, "Background fg_color list does not match default dictionary.")
 
     def test_list_fm(self):
         fm_colors: int = 9
         self.assertGreaterEqual(len(style.list_fm()), fm_colors, "Default format colors incomplete.")
         sample: list = list(style.FORMAT.keys())
-        self.assertEqual(style.list_fm(), sample, "Format color list does not match default dictionary.")
+        self.assertEqual(style.list_fm(), sample, "Format fg_color list does not match default dictionary.")
 
     def test_stylize(self):
         self.assertEqual(style.stylize("Hello World", "black", "yellow", "underline"),

@@ -6,8 +6,7 @@ class Pretty:
         """
         Initialize Pretty.
         """
-        self._no_color: bool = no_color
-        self._composer: Composer = Composer()
+        self._composer: Composer = Composer(no_color)
 
     def __call__(self, msg: str) -> str:
         """
@@ -136,5 +135,5 @@ class Pretty:
 
 
 if __name__ == '__main__':
-    p = Pretty()
+    p = Pretty(no_color=False)
     p.success("Success message")

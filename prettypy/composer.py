@@ -60,10 +60,11 @@ DEFAULT_LAYOUTS: dict = {
 
 
 class Composer:
-    def __init__(self) -> None:
+    def __init__(self, no_color: bool = False) -> None:
         """
         Initialize Composer.
         """
+        self._no_color: bool = no_color
         self._layouts: dict = {}
         self.add_layouts(DEFAULT_LAYOUTS)
 
@@ -81,20 +82,23 @@ class Composer:
         for layout in self._layouts.items():
             yield layout[1]
 
-    def add(self, name: str, text: str, color: str = "reset") -> None:
+    def add(self, name: str, text: str, fg_color: str = "reset", bg_color: str = "reset",
+            style: str = "reset") -> None:
         """
         Add a simple layout to the composer.
         :param name: Name of the layout
         :param text: Text to use
-        :param color: Color to use
+        :param fg_color: Color to use
+        :param bg_color: Background color to use
+        :param style: Style to use
 
         Example:
             composer.add_simple_layout("test", "[Test]", "red")
         """
-        layout: Layout = Layout(name)
-        layout.set_prefix("", color, "reset", "reset")
-        layout.set_text(text, color, "reset", "reset")
-        layout.set_suffix("", color, "reset", "reset")
+        layout: Layout = Layout(name, no_color=self._no_color)
+        layout.set_prefix("", "reset", "reset", "reset")
+        layout.set_text(text, fg_color, bg_color, style)
+        layout.set_suffix("", "reset", "reset", "reset")
         self._layouts[name] = layout
 
     def add_layouts(self, layouts: dict) -> None:
@@ -116,7 +120,7 @@ class Composer:
             ```
         """
         for _name, _layout in layouts.items():
-            layout: Layout = Layout(_name)
+            layout: Layout = Layout(_name, no_color=self._no_color)
             layout.set_prefix(_layout["prefix"][0], _layout["prefix"][1],
                               _layout["prefix"][2], _layout["prefix"][3])
             layout.set_text(_layout["text"][0], _layout["text"][1],
