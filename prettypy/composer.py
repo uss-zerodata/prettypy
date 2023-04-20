@@ -53,7 +53,7 @@ DEFAULT_LAYOUTS: dict = {
     },
     "neutral": {
         "prefix": ["[", "reset", "reset", "reset"],
-        "text": ["~", "reset", "reset", "reset"],
+        "text": [" ", "reset", "reset", "reset"],
         "suffix": ["]", "reset", "reset", "reset"],
     },
 }
@@ -131,7 +131,7 @@ class Composer:
         """
         return self._layouts.get(name)
 
-    def list(self) -> list:
+    def list_modes(self) -> list:
         """
         List all layouts.
         """

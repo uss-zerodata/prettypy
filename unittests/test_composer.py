@@ -58,7 +58,7 @@ DEFAULT_LAYOUTS: dict = {
     },
     "neutral": {
         "prefix": ["[", "reset", "reset", "reset"],
-        "text": ["~", "reset", "reset", "reset"],
+        "text": [" ", "reset", "reset", "reset"],
         "suffix": ["]", "reset", "reset", "reset"],
     },
 }
@@ -127,9 +127,9 @@ class TestComposer(unittest.TestCase):
 
     def test_list(self):
         composer = Composer()
-        self.assertEqual(composer.list(),
+        self.assertEqual(composer.list_modes(),
                          list(composer._layouts.keys()), "List is not correct")
-        self.assertEqual(type(composer.list()[0]),
+        self.assertEqual(type(composer.list_modes()[0]),
                          str, "Object type is not str")
 
     def test_remove(self):
