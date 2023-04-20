@@ -27,5 +27,5 @@ composer.set_padding()
 
 # Print messages again to demonstrate the padding
 pretty.info("This is an info message.")
-pretty.success("This is a success message.")
+pretty.success("This is a success message.\n With a new line.\n and another very long line to demonstrate the padding, which is really really long. Wow, this is a long line. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, nec aliquam nisl nisl nec nisl. nec nisl. Donec auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, nec aliquam nisl nisl nec nisl.")
 pretty.test("This is a test message printed using the composer print method.")

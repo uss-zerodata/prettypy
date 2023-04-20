@@ -49,7 +49,12 @@ class Pretty(PrettyTemplate):
             :return: Formatted text
             """
             pretty: str = self._composer.compose(name, msg)
-            print(pretty)
+            if '\n' in msg:
+                msg = msg.split('\n')
+                for line in msg:
+                    print(self._composer.compose(name, line.strip()))
+            else:
+                print(pretty)
             return pretty
         return _method
 
